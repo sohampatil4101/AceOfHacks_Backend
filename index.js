@@ -28,6 +28,8 @@ app.use('/api/note', require('./routes/note'))
 app.use('/api/sentiments', require('./routes/sentiments'))
 app.use('/api/assesment', require('./routes/assesment'))
 
+// chalo
+app.use('/api/ride', require('./routes/ride'))
 
 
 app.listen(port, () => {
