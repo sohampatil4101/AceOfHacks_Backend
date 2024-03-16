@@ -1,6 +1,7 @@
 const express = require('express')
 const ride = require('../models/Ride')
 const bookvehicle = require('../models/Bookvehicle')
+const rating = require('../models/Rating')
 const router = require('express').Router();
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs');
@@ -97,6 +98,25 @@ router.post('/getride', fetchuser, async (req, res) => {
 });
 
 
+
+// route to post ratings
+router.post('/addrating', fetchuser, async (req, res) =>{        
+    try {
+        console.log(req.user.id)
+        const user = await ride.create({
+            ride: req.body.ride,
+            driver : req.body.driver,
+            passenger : req.body.passenger,
+            rating : req.body.rating,
+            review : req.body.review
+        })        
+        success = true
+        res.json({success})
+}
+catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+}})
 
 // route to get my rides scheduled
 // router.get('/fetchmytodoscore', fetchuser, async(req, res) =>{
