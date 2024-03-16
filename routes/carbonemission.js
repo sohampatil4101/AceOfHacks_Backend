@@ -12,7 +12,7 @@ const JWT_SECRET = 'masknxanxlanla';
 
 
 // Route to add score
-router.post('/postemissionscore', fetchuser, async (req, res) => {
+router.post('/postemission', fetchuser, async (req, res) => {
     try {
         console.log(req.user.id);
         const existingScore = await carbon.findOne({ user: req.user.id });
