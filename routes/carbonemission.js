@@ -47,9 +47,9 @@ router.post('/postemission', fetchuser, async (req, res) => {
 
 
 // route to get the score
-router.get('/fetchmytodoscore', fetchuser, async(req, res) =>{
+router.get('/fetchmycarbonscore', fetchuser, async(req, res) =>{
     try {
-        const notes = await todoscore.find({user: req.user.id});
+        const notes = await carbon.find({user: req.user.id});
         res.json(notes)
     } catch (error) {
     console.log(error.message)
