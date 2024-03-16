@@ -22,6 +22,7 @@ router.post('/postride', fetchuser, async (req, res) =>{
             vehicletype : req.body.vehicletype,
             vehiclecapacity : req.body.vehiclecapacity,
             vehicleNumber : req.body.vehicleNumber,
+            payment : req.body.payment,
         })        
         success = true
         res.json({success})
