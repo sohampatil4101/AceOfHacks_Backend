@@ -7,19 +7,19 @@ const CarbonSchema = new mongoose.Schema({
         ref: 'user',
     },  
     carbonscore:{
-        type: String,
+        type: Number,
         required: true
     },
     totalrides_othersvehicles:{
-        type: String,
+        type: Number,
         required: true
     },
     totalrides_ownvehicles:{
-        type: String,
+        type: Number,
         required: true
     },
     totalrides_othersvehicles_km:{
-        type: String,
+        type: Number,
         required: true
     },
     totalrides_ownvehicles_km:{
