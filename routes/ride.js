@@ -41,16 +41,22 @@ catch (error) {
 
 
 // fetch todo
-router.post('/getride', fetchuser, async(req, res) =>{
+router.post('/getride', fetchuser, async (req, res) => {
     try {
-        const notes = await ride.find({tripfrom: req.body.tripfrom, tripto: req.body.tripto});
-        res.json(notes)
-    } catch (error) {
-    console.log(error.message)
-    res.status(500).send("Some error occured")
-    }
-})
+        const tripfromRegex = new RegExp(req.body.tripfrom, 'i'); // 'i' flag for case-insensitive search
+        const triptoRegex = new RegExp(req.body.tripto, 'i');
 
+        const notes = await ride.find({
+            tripfrom: { $regex: tripfromRegex },
+            tripto: { $regex: triptoRegex }
+        });
+
+        res.json(notes);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("Some error occurred");
+    }
+});
 
 
 
