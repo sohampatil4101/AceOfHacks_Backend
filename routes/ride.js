@@ -38,13 +38,13 @@ router.post('/bookride', fetchuser, async (req, res) =>{
     try {
         console.log(req.user.id)
         const user = await bookvehicle.create({
+            ride: req.body.ride,
             driver: req.body.driver,
             passenger : req.body.passenger,
             from : req.body.from,
             to : req.body.to,
             date : req.body.date,
             time : req.body.time,
-            payment : req.body.payment,
             vehicleNumber : req.body.vehicleNumber
         })        
         success = true

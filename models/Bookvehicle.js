@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 
 const BookvehicleSchema = new mongoose.Schema({
+    ride:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ride',
+    },  
     driver:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
