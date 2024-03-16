@@ -15,6 +15,16 @@ const validate = [
     body('password', 'password must be atleast 5 characters and alphanumeric').isLength({min:5}).isAlphanumeric(),
 ]
 
+router.get('/fetchuser', fetchuser, async(req, res) =>{
+    try {
+        const notes = await User.find({user: req.user.id});
+        res.json(notes)
+        console.log(req.user.id)
+    } catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+    }
+})
 
 // Route 1 to create user
 router.post('/', validate, async (req, res) =>{
