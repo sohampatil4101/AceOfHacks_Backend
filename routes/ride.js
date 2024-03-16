@@ -37,7 +37,8 @@ catch (error) {
 router.post('/bookride', fetchuser, async (req, res) =>{        
     try {
 
-        const existingScore = await ride.findOne({ _id: req.body.id });
+        const existingScore = await ride.findOne({ _id: req.body.ride });
+        console.log(existingScore.vehiclecapacity, req.body.id)
         existingScore.vehiclecapacity = existingScore.vehiclecapacity - 1;
         await existingScore.save();        
 
