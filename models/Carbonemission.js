@@ -14,7 +14,7 @@ const RideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ownvehicles:{
+    totalrides_ownvehicles:{
         type: String,
         required: true
     },
@@ -22,7 +22,7 @@ const RideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ownvehicles_km:{
+    totalrides_ownvehicles_km:{
         type: Number,
         required: true
     },

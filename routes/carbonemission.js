@@ -1,6 +1,6 @@
 const express = require('express')
 const ride = require('../models/Ride')
-const car = require('../models/Todoscore')
+const carbonemission = require('../models/Carbonemission')
 const router = require('express').Router();
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs');
@@ -15,18 +15,26 @@ const JWT_SECRET = 'masknxanxlanla';
 router.post('/postemissionscore', fetchuser, async (req, res) => {
     try {
         console.log(req.user.id);
-        const existingScore = await todoscore.findOne({ user: req.user.id });
+        const existingScore = await carbonemission.findOne({ user: req.user.id });
 
         if (!existingScore) {
             // If no score entry exists for the user, create a new one
             const newScore = new todoscore({
                 user: req.user.id,
-                score: req.body.score
+                carbonscore: req.body.carbonscore,
+                totalrides_othersvehicles: req.body.totalrides_othersvehicles,
+                totalrides_ownvehicles: req.body.totalrides_ownvehicles,
+                totalrides_othersvehicles_km: req.body.totalrides_othersvehicles_km,
+                totalrides_ownvehicles_km: req.body.totalrides_ownvehicles_km
             });
             await newScore.save();
         } else {
             // If a score entry exists, update the score by adding the provided score
-            existingScore.score += req.body.score;
+            existingScore.carbonscore += req.body.carbonscore;
+            existingScore.totalrides_othersvehicles += req.body.totalrides_othersvehicles;
+            existingScore.totalrides_ownvehicles += req.body.totalrides_ownvehicles;
+            existingScore.totalrides_othersvehicles_km += req.body.totalrides_othersvehicles_km;
+            existingScore.totalrides_ownvehicles_km += req.body.totalrides_ownvehicles_km;
             await existingScore.save();
         }
 
