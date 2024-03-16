@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose
-const UserSchema = new mongoose.Schema({
+const CarbonemissionSchema = new mongoose.Schema({
 
     name:{
         type: String,
@@ -40,5 +40,5 @@ const UserSchema = new mongoose.Schema({
 
 });
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model('carbonemission', CarbonemissionSchema);
 module.exports = User

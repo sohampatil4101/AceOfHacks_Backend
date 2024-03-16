@@ -16,7 +16,7 @@ router.post('/postride', fetchuser, async (req, res) =>{
     try {
         console.log(req.user.id)
         const user = await ride.create({
-            user: req.body.user,
+            user: req.user.id,
             tripfrom : req.body.tripfrom,
             tripto : req.body.tripto,
             travelcost : req.body.travelcost,

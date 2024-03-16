@@ -30,6 +30,7 @@ app.use('/api/assesment', require('./routes/assesment'))
 
 // chalo
 app.use('/api/ride', require('./routes/ride'))
+app.use('/api/carbonemission', require('./routes/carbonemission'))
 
 
 app.listen(port, () => {
