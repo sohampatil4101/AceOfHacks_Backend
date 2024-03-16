@@ -41,15 +41,15 @@ catch (error) {
 
 
 // fetch todo
-// router.get('/fetchmytodo', fetchuser, async(req, res) =>{
-//     try {
-//         const notes = await todo.find({user: req.user.id});
-//         res.json(notes)
-//     } catch (error) {
-//     console.log(error.message)
-//     res.status(500).send("Some error occured")
-//     }
-// })
+router.post('/getride', fetchuser, async(req, res) =>{
+    try {
+        const notes = await ride.find({tripfrom: req.body.tripfrom, tripto: req.body.tripto});
+        res.json(notes)
+    } catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+    }
+})
 
 
 
