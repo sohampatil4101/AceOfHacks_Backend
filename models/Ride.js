@@ -30,6 +30,11 @@ const RideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    payment:{
+        type: String,
+        required: true,
+        default:"not paid"
+    },
     date:{
         type: Date,
         default: Date.now
