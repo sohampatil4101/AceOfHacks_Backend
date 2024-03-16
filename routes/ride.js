@@ -21,6 +21,7 @@ router.post('/postride', fetchuser, async (req, res) =>{
             travelcost : req.body.travelcost,
             vehicletype : req.body.vehicletype,
             vehiclecapacity : req.body.vehiclecapacity,
+            seatavailable : req.body.seatavailable,
             vehicleNumber : req.body.vehicleNumber,
             payment : req.body.payment,
             date : req.body.date,
@@ -38,8 +39,7 @@ router.post('/bookride', fetchuser, async (req, res) =>{
     try {
 
         const existingScore = await ride.findOne({ _id: req.body.ride });
-        console.log(existingScore.vehiclecapacity, req.body.id)
-        existingScore.vehiclecapacity = existingScore.vehiclecapacity - 1;
+        existingScore.seatavailable = existingScore.seatavailable - 1;
         await existingScore.save();        
 
         const user = await bookvehicle.create({

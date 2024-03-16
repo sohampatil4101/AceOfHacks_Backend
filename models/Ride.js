@@ -27,6 +27,10 @@ const RideSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    seatavailable:{
+        type: Number,
+        required: true
+    },
     vehicleNumber:{
         type: String,
         required: true
