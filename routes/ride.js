@@ -36,7 +36,11 @@ catch (error) {
 
 router.post('/bookride', fetchuser, async (req, res) =>{        
     try {
-        console.log(req.user.id)
+
+        const existingScore = await ride.findOne({ _id: req.body.id });
+        existingScore.vehiclecapacity = existingScore.vehiclecapacity - 1;
+        await existingScore.save();        
+
         const user = await bookvehicle.create({
             ride: req.body.ride,
             driver: req.body.driver,
@@ -62,11 +66,8 @@ router.post('/paymentdone', fetchuser, async (req, res) => {
     try {
         console.log(req.user.id);
         const existingScore = await bookvehicle.findOne({ _id: req.body.id });
-
-
-            existingScore.payment = "payment completed";
-            await existingScore.save();
-        
+        existingScore.payment = "payment completed";
+        await existingScore.save();
 
         res.json({ success: true });
     } catch (error) {
