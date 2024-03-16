@@ -37,7 +37,7 @@ catch (error) {
 router.post('/bookride', fetchuser, async (req, res) =>{        
     try {
         console.log(req.user.id)
-        const user = await ride.create({
+        const user = await bookvehicle.create({
             driver: req.user.id,
             passenger : req.body.tripfrom,
             from : req.body.tripto,
