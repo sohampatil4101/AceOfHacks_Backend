@@ -36,6 +36,10 @@ router.post('/', validate, async (req, res) =>{
         user = await User.create({
             name : req.body.name,
             email : req.body.email,
+            gender : req.body.gender,
+            license : req.body.license,
+            aadhar : req.body.aadhar,
+            dob : req.body.dob,
             password : hashpassword
         })
         const data = {
