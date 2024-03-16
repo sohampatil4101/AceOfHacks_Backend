@@ -1,3 +1,4 @@
+const { Timestamp } = require('mongodb');
 const mongoose = require('mongoose');
 const {Schema} = mongoose
 
@@ -36,7 +37,7 @@ const RideSchema = new mongoose.Schema({
         default:"not paid"
     },
     time:{
-        type: time,
+        type: Timestamp,
         require: true
     },
     date:{
