@@ -38,19 +38,12 @@ catch (error) {
 router.post('/paymentdone', fetchuser, async (req, res) => {
     try {
         console.log(req.user.id);
-        const existingScore = await ride.findOne({ user: req.user.id });
+        const existingScore = await ride.findOne({ _id: req.body.id });
 
-        if (!existingScore) {
-            // If no score entry exists for the user, create a new one
-            const newScore = new ride({
-                user: req.user.id,
-                payment: req.body.payment,
-            });
-            await newScore.save();
-        } else {
+
             existingScore.payment = "payment completed";
             await existingScore.save();
-        }
+        
 
         res.json({ success: true });
     } catch (error) {
