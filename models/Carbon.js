@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose
 
-const RideSchema = new mongoose.Schema({
+const CarbonSchema = new mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
@@ -33,5 +33,5 @@ const RideSchema = new mongoose.Schema({
 
 
 });
-module.exports = mongoose.model('ride', RideSchema);   
+module.exports = mongoose.model('carbon', CarbonSchema);   
 

@@ -1,6 +1,6 @@
 const express = require('express')
 const ride = require('../models/Ride')
-const carbonemission = require('../models/Carbonemission')
+const carbon = require('../models/Carbon')
 const router = require('express').Router();
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs');
@@ -15,11 +15,11 @@ const JWT_SECRET = 'masknxanxlanla';
 router.post('/postemissionscore', fetchuser, async (req, res) => {
     try {
         console.log(req.user.id);
-        const existingScore = await carbonemission.findOne({ user: req.user.id });
+        const existingScore = await carbon.findOne({ user: req.user.id });
 
         if (!existingScore) {
             // If no score entry exists for the user, create a new one
-            const newScore = new todoscore({
+            const newScore = new carbon({
                 user: req.user.id,
                 carbonscore: req.body.carbonscore,
                 totalrides_othersvehicles: req.body.totalrides_othersvehicles,
