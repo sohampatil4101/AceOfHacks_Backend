@@ -37,7 +37,7 @@ const RideSchema = new mongoose.Schema({
         default:"not paid"
     },
     time:{
-        type: Timestamp,
+        type: Number,
         require: true
     },
     date:{
