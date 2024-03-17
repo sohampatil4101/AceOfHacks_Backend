@@ -119,15 +119,15 @@ catch (error) {
 }})
 
 // route to get my rides scheduled
-// router.get('/fetchmytodoscore', fetchuser, async(req, res) =>{
-//     try {
-//         const notes = await todoscore.find({user: req.user.id});
-//         res.json(notes)
-//     } catch (error) {
-//     console.log(error.message)
-//     res.status(500).send("Some error occured")
-//     }
-// })
+router.get('/getrating', fetchuser, async(req, res) =>{
+    try {
+        const notes = await rating.find({user: req.user.id});
+        res.json(notes)
+    } catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+    }
+})
 
 
 
