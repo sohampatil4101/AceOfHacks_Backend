@@ -114,78 +114,95 @@ router.post('/login', [
 
 
 
-
-    // Route to update user profile
-    router.post('/updateuser', fetchuser, async (req, res) =>{
-        
-        try {
-
-            const user = await Updateuser.create({
-                user: req.user.id,
-                bloodgroup : req.body.bloodgroup,
-                number : req.body.number,
-                age : req.body.age,
-                gender : req.body.gender
-            })
-            
-            success = true
-            res.json({success})
-        
-        
-    }    
-        
-        catch (error) {
-            console.log(error.message)
-            res.status(500).send("Some error occured")
-        }
-        
-        
-    })
+    // Route 3 to get user details
 
 
-  // Route to update user old deases
-  router.post('/updateuserdeases', fetchuser, async (req, res) =>{
-        
+router.post('/getuser', fetchuser,async (req, res) =>{
     try {
+            userId = req.user.id;
+        const user = await User.findById(userId).select("-password")
+        res.send(user)
+    } 
 
-        const user = await Updateuserdeases.create({
-            user: req.user.id,
-            deases : req.body.deases,
-            from : req.body.from,
-            consultation : req.body.consultation,
-            isrecovered : req.body.isrecovered
-        })
-        
-        success = true
-        res.json({success})
-    
-    
-}    
-    
     catch (error) {
         console.log(error.message)
-        res.status(500).send("Some error occured")
+        res.status(500).send("Internal server error occured")
     }
-    
     
 })
 
 
-    // Route 3 to get user details
+// post users aadhar
+router.post('/postaadhar', fetchuser,async (req, res) =>{
+    try {
+        const user = await User.findOne({_id: req.user.id})
+        user.aadhar = req.body.aadhar
+        user.save()
+        res.json("success")
+    } 
 
-
-    router.post('/getuser', fetchuser,async (req, res) =>{
-        try {
-             userId = req.user.id;
-            const user = await User.findById(userId).select("-password")
-            res.send(user)
-        } 
+    catch (error) {
+        console.log(error.message)
+        res.status(500).send("Internal server error occured")
+    }
     
-        catch (error) {
-            console.log(error.message)
-            res.status(500).send("Internal server error occured")
+})
+
+// post users license
+router.post('/postlicense', fetchuser,async (req, res) =>{
+    try {
+        const user = await User.findOne({_id: req.user.id})
+        user.license = req.body.license
+        user.save()
+        res.json("success")
+    } 
+
+    catch (error) {
+        console.log(error.message)
+        res.status(500).send("Internal server error occured")
+    }
+    
+})
+
+// check user has aadhar
+router.get('/getaadhar', fetchuser,async (req, res) =>{
+    try {
+        const user = await User.findOne({_id: req.user.id})
+        if(user.aadhar == null){
+            console.log("no aadhar", user.aadhar)
+            res.send(false)
         }
-        
-    })
+        else{
+            res.send(true)
+        }
+    } 
+
+    catch (error) {
+        console.log(error.message)
+        res.status(500).send("Internal server error occured")
+    }
+    
+})
+
+
+// check user has license
+router.get('/getlicense', fetchuser,async (req, res) =>{
+    try {
+        const user = await User.findOne({_id: req.user.id})
+        if(user.license == null){
+            console.log("no license", user.license)
+            res.send(false)
+        }
+        else{
+            res.send(true)
+        }
+    } 
+
+    catch (error) {
+        console.log(error.message)
+        res.status(500).send("Internal server error occured")
+    }
+    
+})
 
 module.exports = router
