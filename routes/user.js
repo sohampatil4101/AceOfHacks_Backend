@@ -46,8 +46,6 @@ router.post('/', validate, async (req, res) =>{
             email : req.body.email,
             phone : req.body.phone,
             gender : req.body.gender,
-            license : req.body.license,
-            aadhar : req.body.aadhar,
             dob : req.body.dob,
             password : hashpassword
         })

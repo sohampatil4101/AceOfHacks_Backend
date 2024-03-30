@@ -106,7 +106,7 @@ router.post('/addrating', fetchuser, async (req, res) =>{
         const user = await ride.create({
             ride: req.body.ride,
             driver : req.body.driver,
-            passenger : req.body.passenger,
+            passenger : req.user.id,
             rating : req.body.rating,
             review : req.body.review
         })        

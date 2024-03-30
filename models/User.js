@@ -21,11 +21,11 @@ const UserSchema = new mongoose.Schema({
     },
     license:{
         type: String,
-        required: true,
+        required: false,
     },
     aadhar:{
         type: String,
-        required: true,
+        required: false,
     },
     dob:{
         type: String,
