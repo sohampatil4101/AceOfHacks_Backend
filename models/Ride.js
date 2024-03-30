@@ -15,7 +15,7 @@ const RideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    travelcost:{
+    description:{   
         type: String,
         required: true
     },
@@ -34,11 +34,6 @@ const RideSchema = new mongoose.Schema({
     vehicleNumber:{
         type: String,
         required: true
-    },
-    payment:{
-        type: String,
-        required: true,
-        default:"not paid"
     },
     time:{
         type: String,

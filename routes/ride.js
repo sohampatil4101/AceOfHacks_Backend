@@ -19,7 +19,7 @@ router.post('/postride', fetchuser, async (req, res) =>{
             user: req.user.id,
             tripfrom : req.body.tripfrom,
             tripto : req.body.tripto,
-            travelcost : req.body.travelcost,
+            description : req.body.description,
             vehicletype : req.body.vehicletype,
             vehiclecapacity : req.body.vehiclecapacity,
             seatavailable : req.body.seatavailable,
