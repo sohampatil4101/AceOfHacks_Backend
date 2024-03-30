@@ -37,7 +37,7 @@ catch (error) {
 }})
 
 // get ride
-router.post('/getride', fetchuser, async (req, res) =>{        
+router.post('/getrideinfo', fetchuser, async (req, res) =>{        
     try {
 
         const user = await ride.findById({_id: req.body.id})        
