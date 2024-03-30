@@ -1,7 +1,5 @@
 const express = require('express')
 const User = require('../models/User')
-const Updateuser = require('../models/user_medi_info/UserInfo')
-const Updateuserdeases = require('../models/user_medi_info/OldMedi_info')
 const router = require('express').Router();
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs');
@@ -46,6 +44,7 @@ router.post('/', validate, async (req, res) =>{
         user = await User.create({
             name : req.body.name,
             email : req.body.email,
+            phone : req.body.phone,
             gender : req.body.gender,
             license : req.body.license,
             aadhar : req.body.aadhar,
