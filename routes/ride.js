@@ -11,7 +11,7 @@ const JWT_SECRET = 'masknxanxlanla';
 
 
 
-// post todo
+// post ride
 router.post('/postride', fetchuser, async (req, res) =>{        
     try {
         console.log(req.user.id)
@@ -36,6 +36,21 @@ catch (error) {
     res.status(500).send("Some error occured")
 }})
 
+// get ride
+router.get('/getride', fetchuser, async (req, res) =>{        
+    try {
+
+        const user = await ride.find({_id: req.body.id})        
+        success = true
+        res.json({user})
+}
+catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+}})
+
+
+
 router.post('/bookride', fetchuser, async (req, res) =>{        
     try {
 
@@ -46,12 +61,7 @@ router.post('/bookride', fetchuser, async (req, res) =>{
         const user = await bookvehicle.create({
             ride: req.body.ride,
             driver: req.body.driver,
-            passenger : req.body.passenger,
-            from : req.body.from,
-            to : req.body.to,
-            date : req.body.date,
-            time : req.body.time,
-            vehicleNumber : req.body.vehicleNumber
+            passenger : req.body.passenger
         })        
         success = true
         res.json({success})
