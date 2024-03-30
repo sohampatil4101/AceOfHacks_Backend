@@ -40,7 +40,7 @@ catch (error) {
 router.get('/getride', fetchuser, async (req, res) =>{        
     try {
 
-        const user = await ride.find({_id: req.body.id})        
+        const user = await ride.findOne({_id: req.body.id})        
         success = true
         res.json({user})
 }
