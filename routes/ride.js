@@ -152,7 +152,7 @@ router.post('/getusername', fetchuser, async(req, res) =>{
 })
 
 // get username 
-router.get('/getmyname', fetchuser, async(req, res) =>{
+router.get('/getmydata', fetchuser, async(req, res) =>{
     try {
         console.log(req.user.id)
         const notes = await user.findById({_id: req.user.id});
