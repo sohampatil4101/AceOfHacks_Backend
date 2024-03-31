@@ -1,6 +1,7 @@
 const express = require('express')
 const ride = require('../models/Ride')
 const bookvehicle = require('../models/Bookvehicle')
+const user = require('../models/User')
 const rating = require('../models/Rating')
 const router = require('express').Router();
 const {body, validationResult} = require('express-validator')
@@ -132,6 +133,16 @@ catch (error) {
 router.post('/getrating', fetchuser, async(req, res) =>{
     try {
         const notes = await rating.find({driver: req.body.id});
+        res.json(notes)
+    } catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+    }
+})
+
+router.post('/getusername', fetchuser, async(req, res) =>{
+    try {
+        const notes = await user.find({id: req.body.id});
         res.json(notes)
     } catch (error) {
     console.log(error.message)
