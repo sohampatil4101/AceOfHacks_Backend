@@ -155,8 +155,8 @@ router.post('/getusername', fetchuser, async(req, res) =>{
 router.get('/getmyname', fetchuser, async(req, res) =>{
     try {
         console.log(req.user.id)
-        const notes = await user.findById({_id: "65f5c820c1658897140ef0d4"});
-        res.json(notes)
+        const notes = await user.findById({_id: req.user.id});
+        res.json([notes.name, notes.email])
     } catch (error) {
     console.log(error.message)
     res.status(500).send("Some error occured")
