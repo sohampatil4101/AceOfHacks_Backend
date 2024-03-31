@@ -163,9 +163,9 @@ router.get('/getmyname', fetchuser, async(req, res) =>{
     }
 })
 // get average rating 
-router.get('/getaveragerating', fetchuser, async(req, res) =>{
+router.post('/getaveragerating', fetchuser, async(req, res) =>{
     try {
-        const notes = await user.findById({driver: req.user.id});
+        const notes = await user.find({driver: req.user.id});
         res.json(notes)
     } catch (error) {
     console.log(error.message)
