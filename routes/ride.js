@@ -162,6 +162,16 @@ router.get('/getmyname', fetchuser, async(req, res) =>{
     res.status(500).send("Some error occured")
     }
 })
+// get average rating 
+router.get('/getaveragerating', fetchuser, async(req, res) =>{
+    try {
+        const notes = await user.findById({driver: req.user.id});
+        res.json(notes)
+    } catch (error) {
+    console.log(error.message)
+    res.status(500).send("Some error occured")
+    }
+})
 
 
 
