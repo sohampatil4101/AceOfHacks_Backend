@@ -15,6 +15,11 @@ const BookvehicleSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },  
+    km:{
+        type: Number,
+        required: true,
+        default:0
+    },
     amountpaid:{
         type: Number,
         required: true,

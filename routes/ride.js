@@ -81,6 +81,7 @@ router.post('/paymentdone', fetchuser, async (req, res) => {
         const existingScore = await bookvehicle.findOne({ _id: req.body.id });
         existingScore.payment = "payment completed";
         existingScore.amountpaid = req.body.amountpaid;
+        existingScore.km = req.body.km;
         await existingScore.save();
 
         res.json({ success: true });
