@@ -113,7 +113,7 @@ router.post('/getride', fetchuser, async (req, res) => {
 router.post('/addrating', fetchuser, async (req, res) =>{        
     try {
         console.log(req.user.id)
-        const user = await ride.create({
+        const user = await rating.create({
             ride: req.body.ride,
             driver : req.body.driver,
             passenger : req.user.id,
