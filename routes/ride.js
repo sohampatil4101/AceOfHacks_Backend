@@ -166,7 +166,7 @@ router.get('/getmydata', fetchuser, async(req, res) =>{
 router.post('/getaveragerating', fetchuser, async (req, res) => {
     try {
         const ratings = await rating.find({ driver: req.body.id });
-        
+
         // Check if there are any ratings
         if (ratings.length === 0) {
             return res.status(404).json({ message: "No ratings found for this driver." });
@@ -178,6 +178,11 @@ router.post('/getaveragerating', fetchuser, async (req, res) => {
         });
 
         const averageRating = sum / ratings.length;
+        
+        // Log ratings and averageRating for debugging
+        console.log("Ratings:", ratings);
+        console.log("Average Rating:", averageRating);
+
         res.json({ averageRating });
     } catch (error) {
         console.log(error.message);
