@@ -163,15 +163,27 @@ router.get('/getmyname', fetchuser, async(req, res) =>{
     }
 })
 // get average rating 
-router.post('/getaveragerating', fetchuser, async(req, res) =>{
+router.post('/getaveragerating', fetchuser, async (req, res) => {
     try {
-        const notes = await rating.find({driver: req.body.id});
-        res.json(notes)
+        const ratings = await rating.find({ driver: req.body.id });
+        
+        // Check if there are any ratings
+        if (ratings.length === 0) {
+            return res.status(404).json({ message: "No ratings found for this driver." });
+        }
+
+        let sum = 0;
+        ratings.forEach((rating) => {
+            sum += rating.value; // Assuming 'value' is the field where the rating is stored
+        });
+
+        const averageRating = sum / ratings.length;
+        res.json({ averageRating });
     } catch (error) {
-    console.log(error.message)
-    res.status(500).send("Some error occured")
+        console.log(error.message);
+        res.status(500).send("Some error occurred");
     }
-})
+});
 
 
 
