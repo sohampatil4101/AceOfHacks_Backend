@@ -144,7 +144,7 @@ router.post('/getrating', fetchuser, async(req, res) =>{
 router.post('/getusername', fetchuser, async(req, res) =>{
     try {
         const notes = await user.find({_id: req.body.id});
-        res.json(notes)
+        res.json(notes.name)
     } catch (error) {
         console.log(error.message)
         res.status(500).send("Some error occured")
@@ -156,7 +156,7 @@ router.get('/getmyname', fetchuser, async(req, res) =>{
     try {
         console.log(req.user.id)
         const notes = await user.findById({_id: req.user.id});
-        res.json(notes.name)
+        res.json(notes)
     } catch (error) {
     console.log(error.message)
     res.status(500).send("Some error occured")
