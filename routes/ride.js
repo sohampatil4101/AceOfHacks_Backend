@@ -129,7 +129,7 @@ catch (error) {
 }})
 
 // route to get my rides scheduled
-router.get('/getrating', fetchuser, async(req, res) =>{
+router.post('/getrating', fetchuser, async(req, res) =>{
     try {
         const notes = await rating.find({driver: req.body.id});
         res.json(notes)
