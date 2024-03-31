@@ -140,9 +140,21 @@ router.post('/getrating', fetchuser, async(req, res) =>{
     }
 })
 
+// get username for given ids
 router.post('/getusername', fetchuser, async(req, res) =>{
     try {
         const notes = await user.find({id: req.body.id});
+        res.json(notes)
+    } catch (error) {
+        console.log(error.message)
+        res.status(500).send("Some error occured")
+    }
+})
+
+// get username 
+router.get('/getmyname', fetchuser, async(req, res) =>{
+    try {
+        const notes = await user.find({id: req.user.id});
         res.json(notes)
     } catch (error) {
     console.log(error.message)
